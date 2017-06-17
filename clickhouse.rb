@@ -19,7 +19,7 @@ class Clickhouse < Formula
   head "https://github.com/yandex/ClickHouse.git"
 
   depends_on "cmake" => :build
-  depends_on "gcc" => :build
+  depends_on "gcc@6" => :build
 
   depends_on "boost" => :build
   depends_on "icu4c" => :build
