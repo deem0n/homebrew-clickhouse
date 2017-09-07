@@ -23,7 +23,7 @@ class Clickhouse < Formula
 
   depends_on "boost" => :build
   depends_on "icu4c" => :build
-  depends_on "mysql" => :build
+  #depends_on "mysql" => :build
   depends_on "openssl" => :build
   depends_on "unixodbc" => :build
   depends_on "libtool" => :build
@@ -33,6 +33,7 @@ class Clickhouse < Formula
 
   def install
     ENV["ENABLE_MONGODB"] = "0"
+    ENV["ENABLE_MYSQL"] = "0"
     ENV["CC"] = "#{Formula["gcc@6"].bin}/gcc-6"
     ENV["CXX"] = "#{Formula["gcc@6"].bin}/g++-6"
     ENV["CFLAGS"] = "-I/usr/local/include"
