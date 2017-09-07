@@ -35,12 +35,8 @@ class Clickhouse < Formula
     ENV["ENABLE_MONGODB"] = "0"
     ENV["CC"] = "#{Formula["gcc@6"].bin}/gcc-6"
     ENV["CXX"] = "#{Formula["gcc@6"].bin}/g++-6"
-    
-    # Fix Makefile to take CFLAGS/LDFLAGS from environment
-    inreplace "Makefile" do |s|
-       s.change_make_var! "CFLAGS", "-I/usr/local/include"
-       s.change_make_var! "LDFLAGS", "-L/usr/local/lib"
-    end
+    ENV["CFLAGS"] = "-I/usr/local/include"
+    ENV["LDFLAGS"] = "-L/usr/local/lib"
 
     cmake_args = %w[]
     cmake_args << "-DUSE_STATIC_LIBRARIES=0" if MacOS.version >= :sierra
