@@ -2,6 +2,8 @@
 
 This is an unofficial Homebrew repository for the Yandex's [ClickHouse](https://clickhouse.yandex/) DBMS.
 
+Stable version is v1.1.54284
+
 It is relatively new and isn't tested well.  
 Please consider appending the `--verbose` and `--debug` parameters to the `brew install` command to make it easier to debug the package installation.  
 If you are having any problems with the precompiled binaries (bottles), append the `--build-from-source` parameter.
@@ -12,7 +14,7 @@ Issues and pull requests are always welcome!
 
 Add this repository:
 ```
-brew tap hatarist/clickhouse
+brew tap deem0n/clickhouse
 ```
 
 To install the latest `stable` release, run:
