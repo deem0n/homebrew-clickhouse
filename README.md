@@ -10,6 +10,9 @@ If you are having any problems with the precompiled binaries (bottles), append t
 
 Issues and pull requests are always welcome!
 
+## Note on mysql support
+
+As of Sept. 2017 I see problems with `mysql/mysql.h` file not find while building clickhouse on mac os x. To prevent it I disbaled mysql support. Probably related to this [issue](https://github.com/yandex/ClickHouse/issues/1110).
 ## Usage
 
 Add this repository:
