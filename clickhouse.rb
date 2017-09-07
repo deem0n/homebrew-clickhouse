@@ -41,7 +41,7 @@ class Clickhouse < Formula
 
     cmake_args = %w[]
     cmake_args << "-DUSE_STATIC_LIBRARIES=0" if MacOS.version >= :sierra
-    camke_args << "-DENABLE_MYSQL=0"
+    cmake_args << "-DENABLE_MYSQL=0"
 
     mkdir "build"
     cd "build" do
