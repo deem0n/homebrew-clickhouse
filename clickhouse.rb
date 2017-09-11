@@ -12,8 +12,9 @@ class Clickhouse < Formula
   end
 
   bottle do
-    root_url 'https://github.com/hatarist/homebrew-clickhouse/releases/download/bottle'
-    sha256 "4a9539797fbedc28412f7bc0bdd1096e3da9eb9109448abe45319091ef99aa94" => :el_capitan
+    rebuild 1
+    root_url 'https://github.com/deem0n/homebrew-clickhouse/releases/download/bottle'
+    sha256 "4a35a4c2cb2c9e4066a30be79e250428ee98c1f0c5aacbae4a9470e9dc9f2fb9" => :sierra
   end
 
   head "https://github.com/yandex/ClickHouse.git"
