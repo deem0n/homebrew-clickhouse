@@ -2,7 +2,7 @@
 
 This is an unofficial Homebrew repository for the Yandex's [ClickHouse](https://clickhouse.yandex/) DBMS.
 
-Stable version is v1.1.54284
+Stable version is v1.1.54284 and it is building fine on the Sierra.
 
 It is relatively new and isn't tested well.  
 Please consider appending the `--verbose` and `--debug` parameters to the `brew install` command to make it easier to debug the package installation.  
@@ -10,9 +10,10 @@ If you are having any problems with the precompiled binaries (bottles), append t
 
 Issues and pull requests are always welcome!
 
-## Note on mysql support
+## Note on the test (development) build
 
-As of Sept. 2017 I see problems with `mysql/mysql.h` file not find while building clickhouse on mac os x. To prevent it I disbaled mysql support. Probably related to this [issue](https://github.com/yandex/ClickHouse/issues/1110).
+The dev version is v1.1.54288-testing and it is not building :-()
+
 ## Usage
 
 Add this repository:

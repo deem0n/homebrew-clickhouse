@@ -6,16 +6,16 @@ class Clickhouse < Formula
   sha256 "2985575609980d94bb75d67a20880e3a6c09490fe0f65b31ae130b9c451560da"
 
   devel do
-    url "https://github.com/yandex/ClickHouse/archive/v1.1.54214-testing.zip"
+    url "https://github.com/yandex/ClickHouse/archive/v1.1.54288-testing.zip"
     version "1.1.54214"
-    sha256 "0251e549a35621cfea56bf317984c8bbf917b0c0c9ff8681550643df1180a4a0"
+    sha256 "44c0aa152a9c0c4b99e17bba55a69d839d1a12c0346679eb681508eba9896ad2"
   end
 
   bottle do
     root_url 'https://github.com/hatarist/homebrew-clickhouse/releases/download/bottle'
     sha256 "4a9539797fbedc28412f7bc0bdd1096e3da9eb9109448abe45319091ef99aa94" => :el_capitan
   end
-  
+
   head "https://github.com/yandex/ClickHouse.git"
 
   depends_on "cmake" => :build
@@ -23,7 +23,7 @@ class Clickhouse < Formula
 
   depends_on "boost" => :build
   depends_on "icu4c" => :build
-  #depends_on "mysql" => :build
+  depends_on "mysql" => :build
   depends_on "openssl" => :build
   depends_on "unixodbc" => :build
   depends_on "libtool" => :build
@@ -33,15 +33,16 @@ class Clickhouse < Formula
 
   def install
     ENV["ENABLE_MONGODB"] = "0"
-    ENV["ENABLE_MYSQL"] = "0"
+    #ENV["ENABLE_MYSQL"] = "1"
     ENV["CC"] = "#{Formula["gcc@6"].bin}/gcc-6"
     ENV["CXX"] = "#{Formula["gcc@6"].bin}/g++-6"
     ENV["CFLAGS"] = "-I/usr/local/include"
+    ENV["CXXFLAGS"] = "-I/usr/local/include"
     ENV["LDFLAGS"] = "-L/usr/local/lib"
 
     cmake_args = %w[]
     cmake_args << "-DUSE_STATIC_LIBRARIES=0" if MacOS.version >= :sierra
-    cmake_args << "-DENABLE_MYSQL=0"
+    cmake_args << "-DENABLE_MYSQL=1"
 
     mkdir "build"
     cd "build" do
@@ -70,7 +71,8 @@ class Clickhouse < Formula
     mkdir "#{etc}/clickhouse-server/config.d/"
     mkdir "#{etc}/clickhouse-server/users.d/"
 
-    (etc/"clickhouse-client").install "#{buildpath}/dbms/src/Client/config.xml"
+    #there is no client config as of Sept 2017
+    #(etc/"clickhouse-client").install "#{buildpath}/dbms/src/Client/config.xml"
     (etc/"clickhouse-server").install "#{buildpath}/dbms/src/Server/config.xml"
     (etc/"clickhouse-server").install "#{buildpath}/dbms/src/Server/users.xml"
   end
