@@ -13,7 +13,7 @@ class Clickhouse < Formula
 
   bottle do
     rebuild 1
-    root_url 'https://github.com/deem0n/homebrew-clickhouse/releases/download/bottle'
+    root_url 'https://github.com/deem0n/homebrew-clickhouse/releases/download/v1.1.54284'
     sha256 "4a35a4c2cb2c9e4066a30be79e250428ee98c1f0c5aacbae4a9470e9dc9f2fb9" => :sierra
   end
 
