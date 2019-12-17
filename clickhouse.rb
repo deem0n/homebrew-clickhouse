@@ -1,11 +1,4 @@
 class Clickhouse < Formula
-  target_version = "19.17.5.18"
-  desc "is an open-source column-oriented database management system."
-  homepage "https://clickhouse.yandex/"
-  version "#{target_version}-stable"
-  url "https://github.com/ClickHouse/ClickHouse.git", :using => :git, :tag => "v#{version}"
-  sha256 "0895c24e2d10b46f2c0eb391797aeac342b39a89fb4350efdaa1601d0b1e50a6"
-
   devel do
     target_version = "19.19.1.1902"
     version "#{target_version}-testing"
@@ -13,12 +6,19 @@ class Clickhouse < Formula
     sha256 "44c0aa152a9c0c4b99e17bba55a69d839d1a12c0346679eb681508eba9896ad2"
   end
 
+  target_version = "19.17.5.18"
+  desc "is an open-source column-oriented database management system."
+  homepage "https://clickhouse.yandex/"
+  version "#{target_version}-stable"
+  url "https://github.com/ClickHouse/ClickHouse.git", :using => :git, :tag => "v#{version}"
+  sha256 "0895c24e2d10b46f2c0eb391797aeac342b39a89fb4350efdaa1601d0b1e50a6"
+
   # --HEAD
   head "https://github.com/ClickHouse/ClickHouse.git", :using => :git, :tag => "v19.19.1.1902-testing"
 
   bottle do
-    rebuild 1
-    root_url "https://github.com/deem0n/homebrew-clickhouse/releases/download/v#{target_version}/"
+    #rebuild 1
+    root_url "https://github.com/deem0n/homebrew-clickhouse/releases/download/v#{target_version}"
     sha256 "f9f871f85761bfbe6ea9338746b11e73398a95256da4c59dc50b4a8170bf2c9d" => :mojave
   end
 
@@ -122,7 +122,7 @@ class Clickhouse < Formula
       #{var}/clickhouse/
 
     If you're going to run the server, make sure to increase `maxfiles` limit:
-      https://github.com/yandex/ClickHouse/blob/master/MacOS.md
+      https://clickhouse.yandex/docs/en/development/build_osx/#caveats
   EOS
   end
 
