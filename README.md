@@ -2,7 +2,8 @@
 
 This is an unofficial Homebrew repository for the Yandex's [ClickHouse](https://clickhouse.yandex/) DBMS.
 
-Stable version is 19.17.5.18 and it is building fine on the Mojave. It is built Without MySQL support.
+Stable version is 19.17.5.18 and it is building fine on the Mojave. It is built without MySQL support (post Issue if you need it).
+Clickhouse must be compiled with *Clang* on Mac OS X, so we did switched from gcc. That means you need xCode to be installed.
 
 It is relatively new and isn't tested well.  
 Please consider appending the `--verbose` and `--debug` parameters to the `brew install` command to make it easier to debug the package installation.  
