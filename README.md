@@ -2,7 +2,7 @@
 
 This is an unofficial Homebrew repository for the Yandex's [ClickHouse](https://clickhouse.yandex/) DBMS.
 
-Stable version is v1.1.54284 and it is building fine on the Sierra.
+Stable version is 19.17.5.18 and it is building fine on the Mojave. It is built Without MySQL support.
 
 It is relatively new and isn't tested well.  
 Please consider appending the `--verbose` and `--debug` parameters to the `brew install` command to make it easier to debug the package installation.  
@@ -12,7 +12,7 @@ Issues and pull requests are always welcome!
 
 ## Note on the test (development) build
 
-The dev version is v1.1.54288-testing and it is not building :-()
+The dev version is v19.19.1.1902-testing and it was not tested yet.
 
 ## Usage
 
