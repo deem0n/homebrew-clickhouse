@@ -1,3 +1,5 @@
+# https://docs.brew.sh/Formula-Cookbook
+
 class Clickhouse < Formula
   devel do
     target_version = "19.19.1.1902"
@@ -6,7 +8,7 @@ class Clickhouse < Formula
     sha256 "44c0aa152a9c0c4b99e17bba55a69d839d1a12c0346679eb681508eba9896ad2"
   end
 
-  target_version = "19.17.5.18"
+  target_version = "19.17.7.52"
   desc "is an open-source column-oriented database management system."
   homepage "https://clickhouse.yandex/"
   version "#{target_version}-stable"
@@ -19,11 +21,15 @@ class Clickhouse < Formula
   bottle do
     #rebuild 1
     root_url "https://github.com/deem0n/homebrew-clickhouse/releases/download/v#{target_version}"
-    sha256 "f9f871f85761bfbe6ea9338746b11e73398a95256da4c59dc50b4a8170bf2c9d" => :mojave
+    sha256 "19382b886d5a24c54deca5dc8ae347ff5d9263c539c73e8727a97e78e40a3f30" => :mojave
   end
 
   depends_on "cmake" => :build
   depends_on "ninja" => :build
+  depends_on "libtool" => :build
+  depends_on "gettext" => :build
+  depends_on "git-lfs" => :build
+  #depends_on "llvm" => :build
   #depends_on "mariadb" => :build
 
 
