@@ -1,3 +1,5 @@
+# https://docs.brew.sh/Formula-Cookbook
+
 class Clickhouse < Formula
   devel do
     target_version = "19.19.1.1902"
@@ -6,10 +8,10 @@ class Clickhouse < Formula
     sha256 "44c0aa152a9c0c4b99e17bba55a69d839d1a12c0346679eb681508eba9896ad2"
   end
 
-  target_version = "19.17.5.18"
+  target_version = "20.3.8.53"
   desc "is an open-source column-oriented database management system."
   homepage "https://clickhouse.yandex/"
-  version "#{target_version}-stable"
+  version "#{target_version}-lts"
   url "https://github.com/ClickHouse/ClickHouse.git", :using => :git, :tag => "v#{version}"
   sha256 "0895c24e2d10b46f2c0eb391797aeac342b39a89fb4350efdaa1601d0b1e50a6"
 
@@ -24,6 +26,10 @@ class Clickhouse < Formula
 
   depends_on "cmake" => :build
   depends_on "ninja" => :build
+  depends_on "libtool" => :build
+  depends_on "gettext" => :build
+  depends_on "git-lfs" => :build
+  depends_on "llvm" => :build
   #depends_on "mariadb" => :build
 
 
@@ -46,10 +52,20 @@ class Clickhouse < Formula
     #ENV["CC"] = "#{Formula["gcc"].bin}/gcc-9"
     #ENV["CXX"] = "#{Formula["gcc"].bin}/g++-9"
     #ENV["CFLAGS"] = "-I/usr/local/include"
-    #ENV["CXXFLAGS"] = "-I/usr/local/include"
-    #ENV["LDFLAGS"] = "-L/usr/local/lib"
 
+    sys_sdk = `xcrun --show-sdk-path`
+    ENV["PATH"] = "/usr/local/opt/llvm/bin:#{ENV["PATH"]}"
+    ENV["CPPFLAGS"] = "-I/usr/local/opt/llvm/include -I#{sys_sdk}/usr/include"
+    # Use Brew llvm, as we have various errors like: error: '~path' is unavailable: introduced in macOS 10.15
+    # on Mac OS X 10.4
+    ENV["LDFLAGS"] = "-L/usr/local/opt/llvm/lib -Wl,-rpath,/usr/local/opt/llvm/lib"
+
+    brew_clangpp = `which clang++`
+    brew_clang = `which clang`
     cmake_args = %w[]
+    cmake_args << "-DCMAKE_CXX_COMPILER=/usr/local/opt/llvm/bin/clang++"
+    cmake_args << "-DCMAKE_C_COMPILER=/usr/local/opt/llvm/bin/clang"
+    cmake_args << "-DCMAKE_CXX_FLAGS='#{ENV["CPPFLAGS"]}'"
     cmake_args << "-DUSE_STATIC_LIBRARIES=1" if MacOS.version >= :sierra
     cmake_args << "-DENABLE_MYSQL=0"
     cmake_args << "-DENABLE_IPO=0" # WE have -- IPO/LTO not enabled.
